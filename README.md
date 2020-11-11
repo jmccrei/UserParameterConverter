@@ -29,6 +29,14 @@ On controller route
    /**
     * ...
     * @ParamConverter("entity", options={ "user_bind" = true } )
+    * OR EXPLICITLY
+    * @ParamConverter("entities", options={
+    *   "user_bind"={
+    *        "enabled"=true,
+    *        "type"="single",
+    *        "entity"=Entity::class
+    *        }
+    *   })
     * ...
     **/
     public function someAction( App\Entity\Entity $entity ) {
