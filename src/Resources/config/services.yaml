@@ -1,0 +1,5 @@
+services:
+  Jmccrei\UserParameterConverter:
+    resource: '../../'
+    exclude:
+      - '../../DependencyInjection'
