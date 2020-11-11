@@ -30,7 +30,7 @@ On controller route
     * ...
     * @ParamConverter("entity", options={ "user_bind" = true } )
     * OR EXPLICITLY
-    * @ParamConverter("entities", options={
+    * @ParamConverter("entity", options={
     *   "user_bind"={
     *        "enabled"=true,
     *        "type"="single",
