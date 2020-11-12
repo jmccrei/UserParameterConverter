@@ -1,19 +1,27 @@
 {
-    "name": "jmccrei/user-param-converter",
-    "description": "Fetch entities for currently logged in users",
-    "type": "bundle",
-    "authors": [
-        {
-            "name": "Josh McCreight",
-            "email": "jmccreight@shaw.ca"
-        }
-    ],
-    "require": {
-        "symfony/security-bundle": "^5.1",
-        "sensio/framework-extra-bundle": "^5.6",
-        "doctrine/annotations": "^1.11",
-        "doctrine/doctrine-bundle": "^2.2",
-        "doctrine/collections": "^1.6",
-        "doctrine/orm": "^2.7"
+  "name": "jmccrei/user-param-converter",
+  "description": "Fetch entities for currently logged in users",
+  "type": "bundle",
+  "authors": [
+    {
+      "name": "Josh McCreight",
+      "email": "jmccreight@shaw.ca"
     }
+  ],
+  "require": {
+    "symfony/security-bundle": "^5.1",
+    "sensio/framework-extra-bundle": "^5.6",
+    "doctrine/annotations": "^1.11",
+    "doctrine/doctrine-bundle": "^2.2",
+    "doctrine/collections": "^1.6",
+    "doctrine/orm": "^2.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Jmccrei\\UserParameterConverter\\": "/src"
+    },
+    "exclude-from-classmap": [
+      "/tests"
+    ]
+  }
 }

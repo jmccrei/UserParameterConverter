@@ -59,3 +59,38 @@ On controller route
         ...
     }
 ```
+
+```php
+/**
+ * ...
+ * Quick single convert
+ * ...
+ * @ParamConverter( "{entityName}", options={
+ *   ...
+ *   "user_bind" = true
+ *   ...
+ * }
+ * ...
+ **/
+public function someAction( App\Entity\SomeEntity $entityName) {...}
+
+/**
+ * ...
+ * Full Configuration
+ * ...
+ * @ParamConverter( "{entityName}", options={
+ *   ...
+ *   "user_bind" = {
+ *      "enabled"=true|false,
+ *      "type"="collection|single",
+ *      "entityManager"="default", // (default: null)
+ *      "entity"="App\Entity\Entity" // Full namespaced entity
+ *      "userParameter"="user" // (default: "user" - the name of the parameter on the entity for the user)
+ *      "primaryKey"="id" // Entity primary key (default: "id")
+ *   }
+ *   ...
+ * }
+ * ...
+ **/
+public function someAction( App\Entity\SomeEntity $entityName) {...}
+```

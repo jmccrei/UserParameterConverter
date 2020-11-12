@@ -16,6 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Security\Core\Security;
 
 /**
@@ -41,8 +42,12 @@ class UserParamConverter implements ParamConverterInterface
      * @param Security $security
      * @param EntityManagerInterface $em
      */
-    public function __construct(Security $security, EntityManagerInterface $em)
+    public function __construct(Security $security,
+                                KernelInterface $kernel,
+                                EntityManagerInterface $em)
     {
+        dump( $kernel->getContainer()->get( 'doctrine' ) );
+        exit;
         $this->security = $security;
         $this->entityManager = $em;
     }
@@ -83,7 +88,7 @@ class UserParamConverter implements ParamConverterInterface
             $class = $configuration->getClass();
             $repo = $this->entityManager->getRepository($class);
             $userParameter = $options['user_bind']['userParameter'] ?? 'user';
-            $identifier = $options['user_bind']['id'];
+            $identifier = $options['user_bind']['primaryKey'] ?? 'id';
             $object = $repo->findOneBy([$userParameter => $user, 'id' => $request->get($identifier)]);
 
             if (empty($object)) {
@@ -112,7 +117,7 @@ class UserParamConverter implements ParamConverterInterface
             'type' => 'single',
             'entity' => null,
             'userParameter' => 'user',
-            'id' => 'id'
+            'primaryKey' => 'id'
         ];
 
         $options = $configuration->getOptions() ?? [];
