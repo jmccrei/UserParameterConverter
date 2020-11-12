@@ -141,15 +141,16 @@ class UserParamConverter implements ParamConverterInterface
      */
     public function supports(ParamConverter $configuration): bool
     {
+        $result = false;
         $options = $configuration->getOptions() ?? [];
-        if (isset($options['user_bind']) && is_array($options['user_bind'])) {
-            return (bool)$options['user_bind']['enabled'];
+        if (isset($options['user_bind'])) {
+            if (is_array($options['user_bind'])) {
+                $result = (bool)$options['user_bind']['enabled'];
+            } elseif (is_bool($options['user_bind'])) {
+                $result = $options['user_bind'];
+            }
         }
 
-        if (is_bool($options['user_bind'])) {
-            return $options['user_bind'];
-        }
-
-        return false;
+        return $result;
     }
 }
